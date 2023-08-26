@@ -4,9 +4,11 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
 import Example from "./components/Example/Example";
-import { match } from "assert";
+import Days from "./components/Days/Days";
+import Month from "./components/Month/Month";
 
 function App() {
+  //Групировка по месяцам (исходя ииз последней даты)
   function groupDatesByMonth(dates: string[]): Record<string, string[]> {
     const dateMap: Record<string, string[]> = {};
 
@@ -26,7 +28,7 @@ function App() {
 
   // Массив для заполнения датами
   const [dates, setDates] = useState<string[]>([]);
-  // Сегодняшняя дата
+  //API
   const [api, setApi] = useState<any>(null);
   useEffect(() => {
     // Цикл для заполнения
@@ -40,7 +42,7 @@ function App() {
       const newDates = [...dates];
       newDates[newDates.length - 1] = moment(newDates[newDates.length - 1])
         .subtract(1, "day")
-        .format("Y-MM-DD"); // Сдвигаем последнюю дату на 1 день назад
+        .format("Y-MM-DD");
       setDates(newDates);
     }
     // Гет запрос на АПИ
@@ -52,23 +54,14 @@ function App() {
   }, []);
 
   const groupedDates = groupDatesByMonth(dates);
+  //отсортированный массив
   const sortedMonthKeys = Object.keys(groupedDates).sort();
 
   return (
     <div className="App">
-      <div className="day">
-        <p>Пн</p>
-        <p>Ср</p>
-        <p>Пт</p>
-      </div>
+      <Days />
       <div className="element">
-        <div className="month">
-          {sortedMonthKeys.map((monthKey) => (
-            <div className="month" key={monthKey}>
-              <p>{moment(monthKey).format("MMMM")}</p>
-            </div>
-          ))}
-        </div>
+        <Month sortedMonthKeys={sortedMonthKeys} />
         <div className="graph">
           {dates
             .slice()

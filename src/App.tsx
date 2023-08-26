@@ -3,6 +3,7 @@ import "./App.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
+import Modal from "./components/Modal/Modal";
 
 function App() {
   function groupDatesByMonth(dates: string[]): Record<string, string[]> {
@@ -80,6 +81,7 @@ function App() {
         </div>
         <div className="example">
           <p>Меньше</p>
+          <Cell />
           <Cell match={9} />
           <Cell match={19} />
           <Cell match={29} />
@@ -87,6 +89,7 @@ function App() {
           <p>Больше</p>
         </div>
       </div>
+      <Modal />
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
 import "./Modal.scss";
-import CellProps from "../Cell/CellProp";
+import { CellProps } from "../../types/type";
 import moment from "moment";
 const Modal = ({ active, setActive, match, cell }: CellProps): JSX.Element => {
   const modalRef = useRef<HTMLDivElement>(null); // Указываем тип элемента

@@ -1,12 +1,10 @@
+import "./Month.scss";
 import moment from "moment";
-interface Propps {
-  sortedMonthKeys: string[];
-}
-const Month = ({ sortedMonthKeys }: Propps) => {
-  console.log(sortedMonthKeys);
+import { Props } from "../../types/type";
+const Month = ({ sortedMonthKeys }: Props) => {
   return (
     <div className="month">
-      {sortedMonthKeys.map((monthKey) => (
+      {sortedMonthKeys?.map((monthKey) => (
         <div className="month" key={monthKey}>
           <p>{moment(monthKey).format("MMMM")}</p>
         </div>

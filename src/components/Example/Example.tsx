@@ -1,6 +1,5 @@
-import React from "react";
+import "./Examplle.scss";
 import Cell from "../Cell/Cell";
-import CellProps from "../Cell/CellProp";
 
 const Example = () => {
   return (

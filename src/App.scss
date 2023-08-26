@@ -4,26 +4,3 @@
   justify-content: center;
   margin-top: 200px;
 }
-.graph {
-  height: 150px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  flex-wrap: wrap;
-  cursor: default;
-  width: 870px;
-}
-
-.month {
-  display: flex;
-  color: #959494;
-  p {
-    font-size: 12px;
-    margin-right: 45px;
-  }
-}
-.example {
-  margin-top: 20px;
-  display: flex;
-  gap: 5px;
-}

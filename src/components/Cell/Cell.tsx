@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Modal from "../Modal/Modal";
 import "./Cell.scss";
-import CellProps from "./CellProp";
+import { CellProps } from "../../types/type";
 const Cell = ({ cell, match }: CellProps): JSX.Element => {
   const [active, setActive] = useState<boolean>(false);
   const openModal = () => {

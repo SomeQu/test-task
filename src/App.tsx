@@ -1,11 +1,10 @@
-import Cell from "./components/Cell/Cell";
 import "./App.scss";
 import { useEffect, useState } from "react";
-import axios from "axios";
 import moment from "moment";
 import Example from "./components/Example/Example";
 import Days from "./components/Days/Days";
 import Month from "./components/Month/Month";
+import Graph from "./components/Graph/Graph";
 
 function App() {
   //Групировка по месяцам (исходя ииз последней даты)
@@ -28,8 +27,6 @@ function App() {
 
   // Массив для заполнения датами
   const [dates, setDates] = useState<string[]>([]);
-  //API
-  const [api, setApi] = useState<any>(null);
   useEffect(() => {
     // Цикл для заполнения
     for (let i = 0; i <= 356; i++) {
@@ -45,12 +42,6 @@ function App() {
         .format("Y-MM-DD");
       setDates(newDates);
     }
-    // Гет запрос на АПИ
-    setApi(
-      axios
-        .get("https://dpg.gg/test/calendar.json")
-        .then((response) => setApi(response.data))
-    );
   }, []);
 
   const groupedDates = groupDatesByMonth(dates);
@@ -62,14 +53,7 @@ function App() {
       <Days />
       <div className="element">
         <Month sortedMonthKeys={sortedMonthKeys} />
-        <div className="graph">
-          {dates
-            .slice()
-            .reverse()
-            .map((cell, index) => {
-              return <Cell match={api[cell]} cell={cell} key={index} />;
-            })}
-        </div>
+        <Graph dates={dates} />
         <Example />
       </div>
     </div>

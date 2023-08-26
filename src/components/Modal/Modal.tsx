@@ -18,7 +18,7 @@ const Modal = ({ active, setActive, match, cell }: CellProps): JSX.Element => {
   return (
     <div ref={modalRef} className={active ? "active" : "modal"}>
       <span>{match} Contributions</span>
-      <p>{moment(cell).format("dddd, MMM D, Y")}</p>
+      <p>{moment(cell).format("dddd, MMM DD, Y")}</p>
     </div>
   );
 };

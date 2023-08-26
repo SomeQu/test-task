@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import "./Modal.scss";
 import CellProps from "../Cell/CellProp";
+import moment from "moment";
 const Modal = ({ active, setActive, match, cell }: CellProps): JSX.Element => {
   const modalRef = useRef<HTMLDivElement>(null); // Указываем тип элемента
   useEffect(() => {
@@ -17,7 +18,7 @@ const Modal = ({ active, setActive, match, cell }: CellProps): JSX.Element => {
   return (
     <div ref={modalRef} className={active ? "active" : "modal"}>
       <span>{match} Contributions</span>
-      <p>{cell}</p>
+      <p>{moment(cell).format("dddd, MMM D, Y")}</p>
     </div>
   );
 };

@@ -3,7 +3,8 @@ import "./App.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import moment from "moment";
-import Modal from "./components/Modal/Modal";
+import Example from "./components/Example/Example";
+import { match } from "assert";
 
 function App() {
   function groupDatesByMonth(dates: string[]): Record<string, string[]> {
@@ -26,10 +27,7 @@ function App() {
   // Массив для заполнения датами
   const [dates, setDates] = useState<string[]>([]);
   // Сегодняшняя дата
-  const today: string = moment().format("Y-MM-DD");
   const [api, setApi] = useState<any>(null);
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
   useEffect(() => {
     // Цикл для заполнения
     for (let i = 0; i <= 356; i++) {
@@ -51,7 +49,7 @@ function App() {
         .get("https://dpg.gg/test/calendar.json")
         .then((response) => setApi(response.data))
     );
-  }, [today]);
+  }, []);
 
   const groupedDates = groupDatesByMonth(dates);
   const sortedMonthKeys = Object.keys(groupedDates).sort();
@@ -75,21 +73,12 @@ function App() {
           {dates
             .slice()
             .reverse()
-            .map((cell: any, index: any) => {
+            .map((cell, index) => {
               return <Cell match={api[cell]} cell={cell} key={index} />;
             })}
         </div>
-        <div className="example">
-          <p>Меньше</p>
-          <Cell />
-          <Cell match={9} />
-          <Cell match={19} />
-          <Cell match={29} />
-          <Cell match={31} />
-          <p>Больше</p>
-        </div>
+        <Example />
       </div>
-      <Modal />
     </div>
   );
 }

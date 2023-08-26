@@ -1,10 +1,12 @@
+import { useState } from "react";
+import Modal from "../Modal/Modal";
 import "./Cell.scss";
-interface CellProps {
-  cell?: string;
-  match?: number;
-  active?: boolean;
-}
+import CellProps from "./CellProp";
 const Cell = ({ cell, match }: CellProps): JSX.Element => {
+  const [active, setActive] = useState<boolean>(false);
+  const openModal = () => {
+    setActive(true);
+  };
   const moreThanThirty: string =
     match! >= 30 ? "moreThanThirty" : "no-contribution";
   const lessThanThirty: string =
@@ -13,10 +15,18 @@ const Cell = ({ cell, match }: CellProps): JSX.Element => {
     match! <= 19 && match! >= 10 ? "lessThanTwenty" : lessThanThirty;
   const lessThanTen: string = match! <= 9 ? "lessThanTen" : lessThanTwenty;
   return (
-    <div className="singeCell">
+    <div onClick={() => openModal()} className="singeCell">
       <div className={lessThanTen}>
         <p> ㅤ</p>
       </div>
+      {active && (
+        <Modal
+          active={active}
+          setActive={setActive}
+          match={match}
+          cell={cell}
+        />
+      )}
     </div>
   );
 };

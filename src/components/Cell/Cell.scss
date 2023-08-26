@@ -1,0 +1,35 @@
+$no-contribution: #ededed;
+$one-nine: #acd5f2;
+$ten-niteteen: #7fa8c9;
+$twenty-twentynine: #527ba0;
+$thirty-plus: #254e77;
+
+.singeCell {
+  width: 1rem;
+  height: 1rem;
+  border: 1px solid white;
+  margin: 1px;
+  // color:transparent
+  :hover {
+    border: 1px solid #00000080;
+  }
+  :focus {
+    border: 2px solid green;
+  }
+}
+
+.lessThanThirty {
+  background: $twenty-twentynine;
+}
+.lessThanTen {
+  background-color: $one-nine;
+}
+.moreThanThirty {
+  background-color: $thirty-plus;
+}
+.lessThanTwenty {
+  background-color: $ten-niteteen;
+}
+.no-contribution {
+  background-color: $no-contribution;
+}

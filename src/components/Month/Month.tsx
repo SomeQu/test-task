@@ -1,5 +1,6 @@
 import "./Month.scss";
 import moment from "moment";
+import "moment/locale/ru";
 import { Props } from "../../types/type";
 const Month = ({ sortedMonthKeys }: Props) => {
   return (
